@@ -1,0 +1,29 @@
+/*
+table#seat { border-collapse: collapse; }
+*/
+
+table#seats {
+    border-collapse: separate;
+}
+
+table#selector {
+    border-collapse: collapse;
+}
+
+td {
+    background: lightyellow;
+    border: 1pt solid black;
+}
+
+table#selector td {
+    text-align:left;
+    padding: 5px;
+}
+
+table#seats td {
+    width: 20mm;
+    height: 10mm;
+    border-collapse: separate;
+    text-align: center;
+    margin: 2px;
+}
