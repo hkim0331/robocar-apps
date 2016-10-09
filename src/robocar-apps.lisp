@@ -5,9 +5,8 @@
 
 (in-package :robocar-apps)
 
-(defvar *version* "0.1")
+(defvar *version* "0.2.1")
 (defvar *http*)
-
 
 (defmacro with-db-ucome (&rest rest)
   "mongodb://localhost:27017/ucome な感じ"
@@ -20,7 +19,7 @@
          "[ "
          (:a :href "http://robocar-2016.melt.kyutech.ac.jp" "robocar")
          " | "
-         (:a :href "index" "robocar apps")
+         (:a :href "/index" "robocar apps")
          " | "
          (:a :href "http://www.melt.kyutech.ac.jp" "hkimura lab")
          " ]")))
