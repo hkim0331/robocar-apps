@@ -12,13 +12,11 @@ else
     SED=sed
 fi
 
-#FIXME: leading two spaces.
+# FIXME: want to add leading two spaces.
 ${SED} -i.bak "/^\s*:version / c\
 :version \"${VERSION}\"" robocar-apps.asd
 
 ${SED} -i.bak "/^\s*(defvar \*version\*/ c\
 (defvar *version* \"${VERSION}\")" src/robocar-apps.lisp
-
-
 
 echo ${VERSION} > VERSION
