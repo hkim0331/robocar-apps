@@ -7,6 +7,9 @@
 * vm2016 のポート使用を抑制する
 * web アプリケーションごとに nginx を設定する煩わしさを軽減する
 
+xebio 前、off-line だとプライベート CSS が有効になる模様。
+
+
 ## Usage
 
 ## Installation
