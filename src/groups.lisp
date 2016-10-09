@@ -1,11 +1,10 @@
 (in-package :robocar-apps)
 
-(defvar *coll* "rb_2016")
 (defvar *number-of-robocars* 40)
 
 (defun groups ()
   (with-db-ucome
-      (docs (iter (cl-mongo:db.sort *coll*
+      (docs (iter (cl-mongo:db.sort *groups*
                                   ($ "status" 1)
                                   :limit 0
                                   :field "gid"
@@ -40,13 +39,13 @@
     (:br)
     (:p (:a :class "btn btn-primary" :href "/groups/new" "new group"))))
 
-;; FIXME: warn message
+;; FIXME: confirmation
 (define-easy-handler (group-disable :uri "/groups/delete") (gid)
   (multiple-value-bind (user pass) (authorization)
     (if (and (string= user "hkimura") (string= pass "pass"))
         (progn
           (with-db-ucome
-              (cl-mongo:db.update *coll*
+              (cl-mongo:db.update *groups*
                                   ($ "gid" (parse-integer gid))
                                   ($set "status" 0)))
           (redirect "/groups/index"))
@@ -72,7 +71,7 @@
 
 (defun unique? (key value)
   (with-db-ucome
-      (not (docs (cl-mongo:db.find *coll* ($ ($ "status" 1) ($ key value)))))))
+      (not (docs (cl-mongo:db.find *groups* ($ ($ "status" 1) ($ key value)))))))
 
 (defun unique-mem? (mem)
   (and (unique? "m1" mem)
@@ -98,7 +97,7 @@
       (get-element
      "gid"
      (first (docs (cl-mongo:db.sort
-                   *coll*
+                   *groups*
                    ($ "status" 1)
                    :limit 1
                    :field "gid"
@@ -109,7 +108,7 @@
       (with-db-ucome
           (let ((id (+ 1 (id-max))))
           (cl-mongo:db.insert
-           *coll*
+           *groups*
            ($ ($ "gid" id)
               ($ "robocar" (+ 1 (mod id *number-of-robocars*)))
               ($ "name" name)

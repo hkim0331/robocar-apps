@@ -8,6 +8,10 @@
 (defvar *version* "0.2.2")
 (defvar *http*)
 
+;; collections
+(defvar *groups* "rb_2016")
+b(defvar *answers* "as_2016")
+
 (defmacro with-db-ucome (&rest rest)
   "mongodb://localhost:27017/ucome な感じ"
   `(with-mongo-connection
@@ -34,11 +38,11 @@
        (:meta :http-equiv "X-UA-Compatible" :content "IE=edge")
        (:meta :name "viewport"
         :content "width=device-width, initial-scale=1.0")
-       (:link :rel "stylesheet" :href "/default.css")
-       (:link :rel "stylesheet" :href "/seats.css")
-       (:link :rel "stylesheet" :href "/groups.css")
        (:link :rel "stylesheet"
         :href "//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+       (:link :rel "stylesheet" :href "/seats.css")
+       (:link :rel "stylesheet" :href "/groups.css")
+       (:link :rel "stylesheet" :href "/default.css")
        (:title "roobocar 2016 apps"))
       (:body
        (:div
@@ -72,9 +76,10 @@
 (define-easy-handler (index :uri "/index") ()
   (standard-page
       (:title "Robocar Apps")
-    (:p (:a :href "/assignments/new" "group assignments"))
-    (:p (:a :href "/groups/index" "groups"))
-    (:p (:a :href "/seats/index" "seats"))))
+    (:ul
+     (:li (:a :href "/assignments/new" "グループ課題提出"))
+     (:li (:a :href "/groups/index" "グループ"))
+     (:li (:a :href "/seats/index" "着席状況")))))
 
 (defun main ()
   (start-server 20169)
