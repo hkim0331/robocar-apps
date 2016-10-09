@@ -8,14 +8,16 @@
 (defvar *version* "0.2.3")
 (defvar *http*)
 
-;; collections
+;; mongodb
+(defvar *mongodb-host* "localhost")
+(defvar *db* "ucome")
 (defvar *groups* "rb_2016")
-b(defvar *answers* "as_2016")
+(defvar *answers* "as_2016")
 
 (defmacro with-db-ucome (&rest rest)
   "mongodb://localhost:27017/ucome な感じ"
   `(with-mongo-connection
-       (:host "localhost" :port *mongo-default-port* :db "ucome")
+       (:host *mongodb-host* :port *mongo-default-port* :db *db)
      ,@rest))
 
 (defmacro navi ()
@@ -38,11 +40,11 @@ b(defvar *answers* "as_2016")
        (:meta :http-equiv "X-UA-Compatible" :content "IE=edge")
        (:meta :name "viewport"
         :content "width=device-width, initial-scale=1.0")
-       (:link :rel "stylesheet"
-        :href "//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+       (:link :rel "stylesheet" :href "/default.css")
        (:link :rel "stylesheet" :href "/seats.css")
        (:link :rel "stylesheet" :href "/groups.css")
-       (:link :rel "stylesheet" :href "/default.css")
+       (:link :rel "stylesheet"
+              :href "//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
        (:title "roobocar 2016 apps"))
       (:body
        (:div

@@ -91,8 +91,7 @@ c-2g:10.27.102.1-100
                      :room room))
         (desks (find-desks room)))
     (standard-page
-        (:title "Seats:Show")
-      (:h3 (format t "~a_~a ~a~a ~a ~a" year term wday hour room date))
+        (:title (format t "~a_~a ~a~a ~a ~a" year term wday hour room date))
       (:p "↑ FRONT")
       (:div
        (:table

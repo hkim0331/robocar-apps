@@ -12,6 +12,7 @@ table#seats td {
     border-collapse: separate;
     text-align: center;
     margin: 2px;
+    border: 1pt solid gray;
 }
 
 table#selector {
@@ -19,7 +20,7 @@ table#selector {
 }
 
 table#selector td {
-    text-align:left;
+    text-align: left;
     padding: 5px;
 }
 
