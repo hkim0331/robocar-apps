@@ -20,13 +20,13 @@
       (t (require-authorization)))))
 
 (define-easy-handler (assignments-new :uri "/assignments/new") ()
-  (let ((cookie (cookie-in *cookie*)))
+  (let ((sid (cookie-in *cookie*)))
     (cond
       ((null sid) (redirect "/assignments/login"))
       (t (standard-page
            (:title "Assignments:new")
            (:form :method "post" :action "/assignments/create"
-                  (:input :type "hidden" :name "sid" :value sid)
+                  (:input :name "sid" :value sid)
                   (:p "subject" (:input :name "subject"))
                   (:textarea :name "answer")
                   (:br)
