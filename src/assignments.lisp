@@ -1,15 +1,9 @@
 (in-package :robocar-apps)
 
-;; (define-easy-handler (assignments :uri "/assignments/index") ()
-;;   (standard-page
-;;       (:title "assignments")
-;;     (:h1 "Assignments Page")
-;;     ))
-
 (define-easy-handler (assignments-new :uri "/assignments/new") ()
     (standard-page
       (:title "assignments:new")
-    (:h1 "Assignments:New")
+    (:h3 "Assignments:New")
     (:form :method "post" :action "/assignments/create"
            (:p "subject" (:input :name "subject"))
            (:textarea :name "answer")

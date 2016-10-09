@@ -58,9 +58,8 @@ c-2g:10.27.102.1-100
       (t (error (format nil "unknown room ~a" room))))))
 
 (defun find-students (col &key uhour date room)
-  (with-mongo-connection
-      (:host "localhost" :port *mongo-default-port* :db "ucome")
-    (labels
+  (with-db-ucome
+      (labels
         ((ip-sid (col &key uhour date)
            "((ip sid) ...) のリストを返す。"
            (mapcar

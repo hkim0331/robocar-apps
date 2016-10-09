@@ -4,9 +4,8 @@
 (defvar *number-of-robocars* 40)
 
 (defun groups ()
-  (with-mongo-connection
-      (:host "localhost" :port *mongo-default-port* :db "ucome")
-    (docs (iter (cl-mongo:db.sort *coll*
+  (with-db-ucome
+      (docs (iter (cl-mongo:db.sort *coll*
                                   ($ "status" 1)
                                   :limit 0
                                   :field "gid"
@@ -41,15 +40,15 @@
     (:br)
     (:p (:a :class "btn btn-primary" :href "/groups/new" "new group"))))
 
+;; FIXME: warn message
 (define-easy-handler (group-disable :uri "/groups/delete") (gid)
   (multiple-value-bind (user pass) (authorization)
     (if (and (string= user "hkimura") (string= pass "pass"))
         (progn
-          (with-mongo-connection
-              (:host "localhost" :port *mongo-default-port* :db "ucome")
-            (cl-mongo:db.update *coll*
-                                ($ "gid" (parse-integer gid))
-                                ($set "status" 0)))
+          (with-db-ucome
+              (cl-mongo:db.update *coll*
+                                  ($ "gid" (parse-integer gid))
+                                  ($set "status" 0)))
           (redirect "/groups/index"))
         (require-authorization))))
 
@@ -73,9 +72,8 @@
         (require-authorization))))
 
 (defun unique? (key value)
-  (with-mongo-connection
-      (:host "localhost" :port *mongo-default-port* :db "ucome")
-    (not (docs (cl-mongo:db.find *coll* ($ ($ "status" 1) ($ key value)))))))
+  (with-db-ucome
+      (not (docs (cl-mongo:db.find *coll* ($ ($ "status" 1) ($ key value)))))))
 
 (defun unique-mem? (mem)
   (and (unique? "m1" mem)
@@ -97,9 +95,8 @@
        ))
 
 (defun id-max ()
-  (with-mongo-connection
-      (:host "localhost" :port *mongo-default-port* :db "ucome")
-    (get-element
+  (with-db-ucome
+      (get-element
      "gid"
      (first (docs (cl-mongo:db.sort
                    *coll*
@@ -110,9 +107,8 @@
 
 (define-easy-handler (group-create :uri "/groups/create") (name m1 m2 m3)
   (if (validate name m1 m2 m3)
-      (with-mongo-connection
-          (:host "localhost" :port *mongo-default-port* :db "ucome")
-        (let ((id (+ 1 (id-max))))
+      (with-db-ucome
+          (let ((id (+ 1 (id-max))))
           (cl-mongo:db.insert
            *coll*
            ($ ($ "gid" id)
