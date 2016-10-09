@@ -5,7 +5,7 @@
 
 (in-package :robocar-apps)
 
-(defvar *version* "0.2.1")
+(defvar *version* "0.2.2")
 (defvar *http*)
 
 (defmacro with-db-ucome (&rest rest)
