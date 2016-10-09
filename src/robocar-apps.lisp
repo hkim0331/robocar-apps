@@ -5,7 +5,7 @@
 
 (in-package :robocar-apps)
 
-(defvar *version* "0.2.2")
+(defvar *version* "0.2.3")
 (defvar *http*)
 
 ;; collections
