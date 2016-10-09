@@ -21,9 +21,9 @@
 (defun gid-from-sid (sid)
   (with-db-ucome
       (or
-       (first (get-element "gid" (docs (db.find "rb_2016" ($ ($ "status" 1) ($ "m1" sid))))))
-       (first (get-element "gid" (docs (db.find "rb_2016" ($ ($ "status" 1) ($ "m2" sid))))))
-       (first (get-element "gid" (docs (db.find "rb_2016" ($ ($ "status" 1) ($ "m3" sid)))))))))
+       (first (get-element "gid" (docs (db.find *groups* ($ ($ "status" 1) ($ "m1" sid))))))
+       (first (get-element "gid" (docs (db.find *groups* ($ ($ "status" 1) ($ "m2" sid))))))
+       (first (get-element "gid" (docs (db.find *groups* ($ ($ "status" 1) ($ "m3" sid)))))))))
 
 (define-easy-handler (assignments-create :uri "/assignments/create")
     (sid num answer)
