@@ -13,7 +13,7 @@
 
 (define-easy-handler (groups-index :uri "/groups/index") ()
   (standard-page
-      (:title "groups")
+      (:title "robocar 2016 groups")
     (:table
      :class "table table-hover"
      (:thead :class "thead-default"
@@ -57,8 +57,7 @@
     (if (and (string= user "robocar") (string= pass "ikasumi"))
         (standard-page
             (:title "group:creation")
-         (:h2 "Group creation")
-         (:form :method "post" :action "/groups/create"
+          (:form :method "post" :action "/groups/create"
                 (:p "group name "
                     (:input :name "name" :placeholder "ユニークな名前"))
                 (:p "member1 "

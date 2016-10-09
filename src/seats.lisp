@@ -28,8 +28,7 @@
 
 (define-easy-handler (seats-index :uri "/seats/index") ()
   (standard-page
-      (:title "Seat:index")
-    (:h3 "Select Class")
+      (:title "Seats")
     (:form
      :method "post" :action "/seats/show"
      (:table
@@ -94,12 +93,12 @@ c-2g:10.27.102.1-100
                      :room room))
         (desks (find-desks room)))
     (standard-page
-        (:title "Sheet:show")
+        (:title "Seats:Show")
       (:h3 (format t "~a_~a ~a~a ~a ~a" year term wday hour room date))
       (:p "↑ FRONT")
       (:div
        (:table
-        :id "isc-seats"
+        :id "seats"
         (dolist (row desks)
           (htm (:tr
                 (dolist (n row)
@@ -107,7 +106,3 @@ c-2g:10.27.102.1-100
                             (format t "~a" (find-sid n students))))))))))
       (:p (:a :href "/index" "back")))))
 
-;; 呼ばれない。
-;; (defun static-contents ()
-;;   (push (create-static-file-dispatcher-and-handler
-;;          "/seats.css" "static/seats.css") *dispatch-table*))

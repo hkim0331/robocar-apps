@@ -6,20 +6,6 @@ table#seats {
     border-collapse: separate;
 }
 
-table#selector {
-    border-collapse: collapse;
-}
-
-td {
-    background: lightyellow;
-    border: 1pt solid black;
-}
-
-table#selector td {
-    text-align:left;
-    padding: 5px;
-}
-
 table#seats td {
     width: 20mm;
     height: 10mm;
@@ -27,3 +13,13 @@ table#seats td {
     text-align: center;
     margin: 2px;
 }
+
+table#selector {
+    border-collapse: collapse;
+}
+
+table#selector td {
+    text-align:left;
+    padding: 5px;
+}
+

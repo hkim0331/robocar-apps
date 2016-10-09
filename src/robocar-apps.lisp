@@ -19,7 +19,7 @@
          "[ "
          (:a :href "http://robocar-2016.melt.kyutech.ac.jp" "robocar")
          " | "
-         (:a :href "/index" "robocar apps")
+         (:a :href "/index" "apps")
          " | "
          (:a :href "http://www.melt.kyutech.ac.jp" "hkimura lab")
          " ]")))
@@ -39,11 +39,12 @@
        (:link :rel "stylesheet" :href "/groups.css")
        (:link :rel "stylesheet"
         :href "//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
-       (:title ,title))
+       (:title "roobocar 2016 apps"))
       (:body
        (:div
         :class "container"
-        (:h1 :class "page-header hidden-xs" "Robocar 2016 Apps")
+        ;; (:h1 :class "page-header hidden-xs" "Robocar 2016 Apps")
+        (:h3 ,title)
         (navi)
         ,@body
         (:hr)
@@ -70,10 +71,10 @@
 
 (define-easy-handler (index :uri "/index") ()
   (standard-page
-      (:title "robocar-apps")
+      (:title "Robocar Apps")
     (:p (:a :href "/assignments/new" "group assignments"))
-    (:p (:a :href "/seats/index" "isc seats"))
-    (:p (:a :href "/groups/index" "making groups"))))
+    (:p (:a :href "/groups/index" "groups"))
+    (:p (:a :href "/seats/index" "seats"))))
 
 (defun main ()
   (start-server 20169)
