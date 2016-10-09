@@ -66,8 +66,7 @@ c-2g:10.27.102.1-100
             ;; mongodb と接続するのはここだけ？
             (docs (db.find
                    col
-                   ($ ($ "uhour" uhour) ($ "date" date )) :limit 0))
-            )))
+                   ($ ($ "uhour" uhour) ($ "date" date )) :limit 0)))))
       (let ((ip
              (cond
                ((string= room "c-2b") "10.27.100")
@@ -75,8 +74,7 @@ c-2g:10.27.102.1-100
                (t (error (format nil "unknown room ~a" room))))))
         (remove-if-not
          #'(lambda (e) (ppcre:scan ip (first e)))
-         (ip-sid col :uhour uhour :date date))))
-    ))
+         (ip-sid col :uhour uhour :date date))))))
 
 (defun find-sid (n ip-sid-list)
   "((ip sid) ...) のリストから ip の第 4 オクテットが n であるものの sid を返す。"
