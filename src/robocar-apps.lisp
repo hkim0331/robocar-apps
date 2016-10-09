@@ -6,11 +6,21 @@
 (in-package :robocar-apps)
 
 (defvar *version* "0.1")
+(defvar *http*)
+
+
+(defmacro with-db-ucome (&rest rest)
+  "mongodb://localhost:27017/ucome な感じ"
+  `(with-mongo-connection
+       (:host "localhost" :port *mongo-default-port* :db "ucome")
+     ,@rest))
 
 (defmacro navi ()
   `(htm (:p :class "navi"
          "[ "
          (:a :href "http://robocar-2016.melt.kyutech.ac.jp" "robocar")
+         " | "
+         (:a :href "index" "robocar apps")
          " | "
          (:a :href "http://www.melt.kyutech.ac.jp" "hkimura lab")
          " ]")))
@@ -47,8 +57,6 @@
            "/seats.css" "static/seats.css") *dispatch-table*)
     (push (create-static-file-dispatcher-and-handler
            "/groups.css" "static/groups.css") *dispatch-table*))
-
-(defvar *http*)
 
 (defun start-server (&optional (port 8080))
 ;;  (cl-mongo:db.use "ucome")

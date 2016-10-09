@@ -20,8 +20,8 @@
 
 ;; (db.insert collection doc)
 (defun seed (ip)
-  (with-mongo-connection (:host "localhost" :port *mongo-default-port* :db "test")
-    (let ((doc (make-document)))
+  (with-db-ucome
+      (let ((doc (make-document)))
       (add-element "sid" (choose +sid+))
       (add-element "uhour" (format nil "~a~a"
                                    (choose +wday+)
