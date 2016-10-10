@@ -17,7 +17,7 @@
 (defmacro with-db-ucome (&rest rest)
   "mongodb://localhost:27017/ucome な感じ"
   `(with-mongo-connection
-       (:host *mongodb-host* :port *mongo-default-port* :db *db)
+       (:host *mongodb-host* :port *mongo-default-port* :db *db*)
      ,@rest))
 
 (defmacro navi ()
