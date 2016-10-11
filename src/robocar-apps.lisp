@@ -79,9 +79,9 @@
   (standard-page
       (:title "Robocar Apps")
     (:ul
-     (:li (:a :href "/assignments/new" "グループ課題提出"))
+     (:li (:a :href "/assignments/new" "グループ課題提出") (:span "パスワード？"))
      (:li (:a :href "/groups/index" "グループ"))
-     (:li (:a :href "/seats/index" "着席状況")))))
+     (:li (:a :href "/seats/index" "着席状況") (:span "バグあり")))))
 
 (defun main ()
   (start-server 20169)

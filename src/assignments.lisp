@@ -18,6 +18,7 @@
                   (:input :type "submit" :value "送信")))))
 
 ;; stop me! ultra dasa!!
+;; should go robocar-apps.lisp?
 (defun gid-from-sid (sid)
   (with-db-ucome
       (or
