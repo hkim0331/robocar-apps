@@ -5,7 +5,7 @@
 
 (in-package :robocar-apps)
 
-(defvar *version* "0.3.1")
+(defvar *version* "0.3.2")
 (defvar *http*)
 
 ;; mongodb
@@ -79,9 +79,11 @@
   (standard-page
       (:title "Robocar Apps")
     (:ul
-     (:li (:a :href "/assignments/new" "グループ課題提出") (:span "パスワード？"))
+     (:li (:a :href "/assignments/new" "グループ課題提出")
+          (:span "パスワードつけるか？"))
      (:li (:a :href "/groups/index" "グループ"))
-     (:li (:a :href "/seats/index" "着席状況") (:span "バグあり")))))
+     (:li (:a :href "/seats/index" "着席状況")
+          (:span "後方座席を正しく表示しないバグあり")))))
 
 (defun main ()
   (start-server 20169)
