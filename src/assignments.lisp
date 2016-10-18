@@ -43,5 +43,6 @@
       (:p "グループ番号: " (str gid))
       (:p "課題番号: " (str num))
       (:p "回答: ")
-      (:pre (str answer))
+      ;; hotfix 0.3.2, escape '<' character.
+      (:pre (str (cl-ppcre:regex-replace-all "<" answer "&lt;")))
       (:p (:a :href "/index" "back")))))
