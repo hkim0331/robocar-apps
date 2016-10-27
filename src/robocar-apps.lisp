@@ -81,7 +81,7 @@
     (:ul
      (:li (:a :href "/assignments/new" "グループ課題提出")
           (:span "パスワードつけるか？"))
-     (:li (:a :href "/groups/index" "グループ"))
+     (:li (:a :href "/groups/index" "グループ一覧"))
      (:li (:a :href "/seats/index" "着席状況")
           (:span "後方座席を正しく表示しないバグあり")))))
 
