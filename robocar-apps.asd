@@ -13,7 +13,7 @@
 (in-package :robocar-apps-asd)
 
 (defsystem robocar-apps
-:version "0.3.3"
+:version "0.3.4"
   :author "Hiroshi Kimura"
   :license "GPL2"
   :depends-on (:hunchentoot
