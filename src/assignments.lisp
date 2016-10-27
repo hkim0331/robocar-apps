@@ -29,7 +29,9 @@
 (define-easy-handler (assignments-create :uri "/assignments/create")
     (sid num answer)
   (let ((gid (gid-from-sid sid)))
-    (if (and gid num answer)
+    (if (and gid
+             (ppcre:scan-to-strings "\\S" num)
+             (ppcre:scan-to-strings "\\S" answer))
         (progn
           (with-db-ucome
               (let ((doc (make-document)))
@@ -50,7 +52,11 @@
            (:p (:a :href "/index" "back"))))
         (standard-page
          (:title "Error")
+<<<<<<< HEAD
          (:p "グループ番号が見つかりません。")
+=======
+         (:p "グループ番号が見つからないか、")
+>>>>>>> hotfix/0.3.4
          (:p "もしくは課題番号がないか、")
          (:p "カラ回答です。")
          (:p "ブラウザの戻るボタンで前のページに戻り、学生番号等をチェック後、再送信してください。")))))
