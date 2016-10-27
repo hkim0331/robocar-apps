@@ -5,7 +5,7 @@
 
 (in-package :robocar-apps)
 
-(defvar *version* "0.3.4")
+(defvar *version* "0.3.5")
 (defvar *http*)
 
 ;; mongodb
