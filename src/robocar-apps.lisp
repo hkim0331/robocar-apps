@@ -5,7 +5,7 @@
 
 (in-package :robocar-apps)
 
-(defvar *version* "0.3.5")
+(defvar *version* "0.4")
 (defvar *http*)
 
 (defun now ()
