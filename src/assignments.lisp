@@ -39,6 +39,7 @@
                 (add-element "gid" gid doc)
                 (add-element "num" num doc)
                 (add-element "answer" answer doc)
+                (add-element "date" (now) doc)
                 (db.insert *answers* doc)))
           (set-cookie *cookie* :value sid)
           (standard-page
@@ -46,6 +47,7 @@
            (:p "学生番号: " (str sid))
            (:p "グループ番号: " (str gid))
            (:p "課題番号: " (str num))
+           (:p "受付時間: " (str (now)))
            (:p "回答: ")
            ;; hotfix 0.3.2, escape '<' character.
            (:pre (str (cl-ppcre:regex-replace-all "<" answer "&lt;")))
