@@ -44,7 +44,7 @@
        (:link :rel "stylesheet" :href "/seats.css")
        (:link :rel "stylesheet" :href "/groups.css")
        (:link :rel "stylesheet"
-              :href "//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+                            :href "//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
        (:title "roobocar 2016 apps"))
       (:body
        (:div
