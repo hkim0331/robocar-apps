@@ -5,8 +5,13 @@
 
 (in-package :robocar-apps)
 
-(defvar *version* "0.3.5")
+(defvar *version* "0.4")
 (defvar *http*)
+
+(defun now ()
+  (multiple-value-bind (s m h dd mm yy)
+      (decode-universal-time (get-universal-time))
+    (format nil "~d-~2,'0d-~2,'0d ~2,'0d:~2,'0d:~2,'0d" yy mm dd h m s)))
 
 ;; mongodb
 (defvar *mongodb-host* "localhost")
