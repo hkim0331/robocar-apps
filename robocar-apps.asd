@@ -3,10 +3,6 @@
   Copyright (c) 2016 Hiroshi Kimura
 |#
 
-#|
-  Author: Hiroshi Kimura
-|#
-
 (in-package :cl-user)
 (defpackage robocar-apps-asd
   (:use :cl :asdf))

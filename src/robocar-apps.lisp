@@ -13,6 +13,9 @@
       (decode-universal-time (get-universal-time))
     (format nil "~d-~2,'0d-~2,'0d ~2,'0d:~2,'0d:~2,'0d" yy mm dd h m s)))
 
+(defun today ()
+  (subseq (now) 0 10))
+
 ;; mongodb
 (defvar *mongodb-host* "localhost")
 (defvar *db* "ucome")
