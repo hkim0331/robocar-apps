@@ -53,11 +53,10 @@
        (:link :rel "stylesheet" :href "/groups.css")
        (:link :rel "stylesheet"
                             :href "//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
-       (:title "roobocar 2016 apps"))
+       (:title "roobocar apps"))
       (:body
        (:div
         :class "container"
-        ;; (:h1 :class "page-header hidden-xs" "Robocar 2016 Apps")
         (:h3 ,title)
         (navi)
         ,@body
