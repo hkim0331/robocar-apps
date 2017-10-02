@@ -5,7 +5,7 @@
 
 (in-package :robocar-apps)
 
-(defvar *version* "0.4.2")
+(defvar *version* "0.5.0")
 (defvar *http*)
 
 (defun now ()
@@ -19,11 +19,11 @@
 ;; mongodb
 (defvar *mongodb-host* "localhost")
 (defvar *db* "ucome")
-(defvar *groups* "rb_2016")
-(defvar *answers* "as_2016")
+(defvar *groups* "rb_2017")
+(defvar *answers* "as_2017")
 
 (defmacro with-db-ucome (&rest rest)
-  "mongodb://localhost:27017/ucome な感じ"
+  "mongodb://localhost:27017/ucome な感じ。こんなコメントはダメ。"
   `(with-mongo-connection
        (:host *mongodb-host* :port *mongo-default-port* :db *db*)
      ,@rest))
@@ -31,7 +31,7 @@
 (defmacro navi ()
   `(htm (:p :class "navi"
          "[ "
-         (:a :href "http://robocar-2016.melt.kyutech.ac.jp" "robocar")
+         (:a :href "http://robocar.melt.kyutech.ac.jp" "robocar")
          " | "
          (:a :href "/index" "apps")
          " | "
@@ -53,11 +53,11 @@
        (:link :rel "stylesheet" :href "/groups.css")
        (:link :rel "stylesheet"
                             :href "//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
-       (:title "roobocar 2016 apps"))
+       (:title "roobocar 2017 apps"))
       (:body
        (:div
         :class "container"
-        ;; (:h1 :class "page-header hidden-xs" "Robocar 2016 Apps")
+        ;; (:h1 :class "page-header hidden-xs" "Robocar 2017 Apps")
         (:h3 ,title)
         (navi)
         ,@body
