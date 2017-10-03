@@ -1,6 +1,6 @@
 #|
   This file is a part of robocar-apps project.
-  Copyright (c) 2016 Hiroshi Kimura
+  Copyright (c) 2016, 2017 Hiroshi Kimura
 |#
 
 (in-package :cl-user)
@@ -9,7 +9,7 @@
 (in-package :robocar-apps-asd)
 
 (defsystem robocar-apps
-:version "0.4.2"
+:version "0.5.0"
   :author "Hiroshi Kimura"
   :license "GPL2"
   :depends-on (:hunchentoot
