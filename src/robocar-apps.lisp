@@ -5,8 +5,16 @@
 
 (in-package :robocar-apps)
 
-(defvar *version* "0.3.5")
+(defvar *version* "0.4.2")
 (defvar *http*)
+
+(defun now ()
+  (multiple-value-bind (s m h dd mm yy)
+      (decode-universal-time (get-universal-time))
+    (format nil "~d-~2,'0d-~2,'0d ~2,'0d:~2,'0d:~2,'0d" yy mm dd h m s)))
+
+(defun today ()
+  (subseq (now) 0 10))
 
 ;; mongodb
 (defvar *mongodb-host* "localhost")
@@ -44,12 +52,11 @@
        (:link :rel "stylesheet" :href "/seats.css")
        (:link :rel "stylesheet" :href "/groups.css")
        (:link :rel "stylesheet"
-              :href "//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
-       (:title "roobocar 2016 apps"))
+                            :href "//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+       (:title "roobocar apps"))
       (:body
        (:div
         :class "container"
-        ;; (:h1 :class "page-header hidden-xs" "Robocar 2016 Apps")
         (:h3 ,title)
         (navi)
         ,@body

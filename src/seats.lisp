@@ -33,13 +33,13 @@
      :method "post" :action "/seats/show"
      (:table
       :id "selector"
-      (:tr (:th "year") (:td (radio-buttons "year" '(2016 2017))))
+      (:tr (:th "year") (:td (radio-buttons "year" '(2016 2017 2018 2019))))
       (:tr (:th "term") (:td (radio-buttons "term" '("q1" "q2" "q3" "q4"))))
       (:tr (:th "wday") (:td (radio-buttons "wday"
                                             '("Mon" "Tue" "Wed" "Thu" "Fri"))))
       (:tr (:th "hour") (:td (radio-buttons "hour" '(1 2 3 4 5))))
       (:tr (:th "room") (:td (radio-buttons "room" '("c-2b" "c-2g"))))
-      (:tr (:th "date") (:td (:input :name "date" :placeholder "2016-09-14"))))
+      (:tr (:th "date") (:td (:input :name "date" :value (today)))))
      (:br)
      (:input :type "submit" :value "show"))))
 

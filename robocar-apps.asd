@@ -3,17 +3,13 @@
   Copyright (c) 2016 Hiroshi Kimura
 |#
 
-#|
-  Author: Hiroshi Kimura
-|#
-
 (in-package :cl-user)
 (defpackage robocar-apps-asd
   (:use :cl :asdf))
 (in-package :robocar-apps-asd)
 
 (defsystem robocar-apps
-:version "0.3.5"
+:version "0.4.2"
   :author "Hiroshi Kimura"
   :license "GPL2"
   :depends-on (:hunchentoot
