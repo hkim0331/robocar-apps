@@ -12,7 +12,7 @@
 
 (define-easy-handler (groups-index :uri "/groups/index") ()
   (standard-page
-      (:title "robocar 2016 groups")
+      (:title "robocar 2017 groups")
     (:table
      :class "table table-hover"
      (:thead :class "thead-default"
@@ -71,46 +71,60 @@
 
 (defun unique? (key value)
   (with-db-ucome
-      (not (docs (cl-mongo:db.find *groups* ($ ($ "status" 1) ($ key value)))))))
-
+      (not (docs (cl-mongo:db.find *groups*
+                                   ($ ($ "status" 1) ($ key value)))))))
+;; ダサすぎ。
 (defun unique-mem? (mem)
-  (and (unique? "m1" mem)
+  (and (sid? mem)
+       (unique? "m1" mem)
        (unique? "m2" mem)
        (unique? "m3" mem)))
 
 (defun unique-name? (name)
   (unique? "name" name))
 
-(defun sid? (num)
-  (cl-ppcre:scan "^[0-9]{8}$" num))
+(defun sid? (str)
+  (cl-ppcre:scan "^[0-9]{8}$" str))
 
-;;FIXME, ださい。
+(defun all-differs? (m1 m2 m3)
+  (and (not (string= m1 m2))
+       (not (string= m2 m3))
+       (not (string= m3 m1))))
+
+;;FIXME
+;; こんなちまちまやらずに、
+;; 一度、全メンバーを取得、
+;; m1, m2, m3 が "" または uniq? で十分でないか？
+;; m1, m2, m3 の equality は目を塞ぐ。
 (defun validate (name m1 m2 m3)
   (and (unique-name? name)
+       (all-differs? m1 m2 m3);; m2==m3=="" のケース。
        (unique-mem? m1)
-       (or (string= "" m2) (and (sid? m2) (unique-mem? m2)))
-       (or (string= "" m3) (and (sid? m3) (unique-mem? m3)))
-       ))
+       (or (string= "" m2) (unique-mem? m2))
+       (or (string= "" m3) (unique-mem? m3))))
 
+;;fix, id-max should return int.
 (defun id-max ()
-  (with-db-ucome
-      (get-element
-     "gid"
-     (first (docs (cl-mongo:db.sort
-                   *groups*
-                   ($ "status" 1)
-                   :limit 1
-                   :field "gid"
-                   :asc nil))))))
+  (or (with-db-ucome
+           (get-element
+            "gid"
+            (first (docs (cl-mongo:db.sort
+                          *groups*
+                          ($ "status" 1)
+                          :limit 1
+                          :field "gid"
+                          :asc nil)))))
+      0))
 
 (define-easy-handler (group-create :uri "/groups/create") (name m1 m2 m3)
+  (format t "~a ~a ~a ~a" name m1 m2 m3)
   (if (validate name m1 m2 m3)
       (with-db-ucome
           (let ((id (+ 1 (id-max))))
           (cl-mongo:db.insert
            *groups*
            ($ ($ "gid" id)
-              ($ "robocar" (+ 1 (mod id *number-of-robocars*)))
+              ($ "robocar" (mod id *number-of-robocars*))
               ($ "name" name)
               ($ "m1" m1)
               ($ "m2" m2)

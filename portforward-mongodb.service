@@ -1,0 +1,11 @@
+[Unit]
+Description=portforward for app robocar class
+After=network.target
+
+[Service]
+Type=simple
+ExecStart="/usr/bin/ssh -f -N -L 27017:localhost:27017 dbs.melt.kyutech.ac.jp"
+User=hkim
+
+[Install]
+WantedBy=multi-user.target
