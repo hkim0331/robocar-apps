@@ -5,7 +5,7 @@
 
 (in-package :robocar-apps)
 
-(defvar *version* "0.5.0")
+(defvar *version* "0.5.1")
 (defvar *http*)
 
 (defun now ()
@@ -96,3 +96,4 @@
 (defun main ()
   (start-server 20169)
   (loop (sleep 60)))
+

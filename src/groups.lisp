@@ -81,27 +81,31 @@
        (unique? "m3" mem)))
 
 (defun unique-name? (name)
-  (unique? "name" name))
+  (and (not (string= name ""))
+       (unique? "name" name)))
 
 (defun sid? (str)
   (cl-ppcre:scan "^[0-9]{8}$" str))
 
-(defun all-differs? (m1 m2 m3)
-  (and (not (string= m1 m2))
-       (not (string= m2 m3))
-       (not (string= m3 m1))))
+(defun is-a-set? (lst)
+  (cond
+    ((null lst) t)
+    ((null (cdr lst)) t)
+    ((string= (first lst) (second  lst)) nil)
+    (t (is-a-set? (rest lst)))))
 
-;;FIXME
-;; こんなちまちまやらずに、
-;; 一度、全メンバーを取得、
-;; m1, m2, m3 が "" または uniq? で十分でないか？
-;; m1, m2, m3 の equality は目を塞ぐ。
+(defun valid? (mem)
+  (cond
+    ((null mem) t)
+    ((unique-mem? (car mem)) (valid? (cdr mem)))
+    (t nil)))
+
 (defun validate (name m1 m2 m3)
-  (and (unique-name? name)
-       (all-differs? m1 m2 m3);; m2==m3=="" のケース。
-       (unique-mem? m1)
-       (or (string= "" m2) (unique-mem? m2))
-       (or (string= "" m3) (unique-mem? m3))))
+  (let ((mem (remove-if (lambda (x) (string= "" x)) (list m1 m2 m3))))
+    (and (unique-name? name)
+         (not (null mem))
+         (is-a-set? mem)
+         (valid? mem))))
 
 ;;fix, id-max should return int.
 (defun id-max ()
