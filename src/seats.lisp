@@ -33,7 +33,7 @@
      :method "post" :action "/seats/show"
      (:table
       :id "selector"
-      (:tr (:th "year") (:td (radio-buttons "year" '(2016 2017))))
+      (:tr (:th "year") (:td (radio-buttons "year" '(2016 2017 2018 2019))))
       (:tr (:th "term") (:td (radio-buttons "term" '("q1" "q2" "q3" "q4"))))
       (:tr (:th "wday") (:td (radio-buttons "wday"
                                             '("Mon" "Tue" "Wed" "Thu" "Fri"))))

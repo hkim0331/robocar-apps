@@ -1,0 +1,11 @@
+[Unit]
+Description=App for robocar class
+After=network.target portforward-mongodb.service
+
+[Service]
+Type=simple
+WorkingDirectory=/srv/robocar-apps
+ExecStart=/srv/robocar-app/robocar-apps
+
+[Install]
+WantedBy=multi-user.target

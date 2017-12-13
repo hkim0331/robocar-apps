@@ -7,7 +7,15 @@
 * vm2016 のポート使用を抑制する
 * web アプリケーションごとに nginx を設定する煩わしさを軽減する
 
-xebio 前、off-line だとプライベート CSS が有効になる模様。
+## port forward required
+
+```sh
+$ ssh -f -N -L 27017:localhost:27017 user@mongodb.host
+```
+
+## FIXME
+
+* インストールしたサーバ上では有効な css が localhost では無効。
 
 ## Usage
 
