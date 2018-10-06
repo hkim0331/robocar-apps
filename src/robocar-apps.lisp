@@ -5,8 +5,7 @@
 
 (in-package :robocar-apps)
 
-(defvar *version* "0.6.1")
-(defparameter *http* nil)
+(defvar *version* "0.6.2")
 
 ;;http://lambdasakura.hatenablog.com/entry/20100122/1264134907
 (defun my-getenv (name &optional default)
@@ -22,13 +21,17 @@
      #+SBCL (sb-unix::posix-getenv name)
      #+LISPWORKS (lispworks:environment-variable name)
      default))
-(defvar *mongodb-host*
-  (or (my-getenv "ROBOCAR_APP_DB") "localhost"))
+
+(defvar *mongodb-host* (my-getenv "ROBOCAR_APP_DB" "localhost"))
+
 (defvar *db* "ucome")
 
 ;;must change annually.
 (defvar *groups* "rb_2018")
 (defvar *answers* "as_2018")
+
+;;server object, just exit to kill.
+(defparameter *http* nil)
 
 (defun now ()
   (multiple-value-bind (s m h dd mm yy)

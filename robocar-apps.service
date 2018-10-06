@@ -1,6 +1,6 @@
 [Unit]
 Description=App for robocar class
-After=network.target portforward-mongodb.service
+After=network.target
 
 [Service]
 Type=simple

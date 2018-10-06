@@ -7,10 +7,9 @@
 * vm2016 のポート使用を抑制する
 * web アプリケーションごとに nginx を設定する煩わしさを軽減する
 
-## hotfix 0.6.1
+## hotfix 0.6.2
 
 * グループ一覧が出ない
-
 * make install
 
 ## start
