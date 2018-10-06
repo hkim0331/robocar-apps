@@ -4,20 +4,17 @@ robocar-apps:
 	sbcl \
 		--eval "(ql:quickload :robocar-apps)" \
 		--eval "(in-package :robocar-apps)" \
-		--eval "(sb-ext:save-lisp-and-die \"robocar-apps\" :executable t :toplevel 'main)"
+		--eval "(sb-ext:save-lisp-and-die \"robocar-apps\" :executable t :toplevel 'main)" &&
+	install -m 0755 robocar-apps /srv/robocar-apps/
 
 start: robocar-apps
-	@echo check the location of static folder.
-	nohup ./robocar-apps &
+	sudo systemtl start robocar-apps
 
 stop:
-	pkill robocar-apps
-	mv nohup.out nohup.out.`date +%F_%T`
+	sudo systemctl stop robocar-apps
 
 restart:
-	make stop
-	make clean
-	make start
+	sudo systemctl restart roboar-apps
 
 clean:
 	${RM} ./robocar-apps
