@@ -23,9 +23,7 @@
      default))
 
 ;;FIXME! can not read ROBOCAR_APP_DB
-;;(defvar *mongodb-host* (my-getenv "ROBOCAR_APP_DB" "localhost"))
-(defvar *mongodb-host* "db.melt.kyutech.ac.jp")
-
+(defvar *mongodb-host* (my-getenv "ROBOCAR_APP_DB" "localhost"))
 (defvar *db* "ucome")
 
 ;;must change annually.
