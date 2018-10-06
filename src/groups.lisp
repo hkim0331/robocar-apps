@@ -1,4 +1,6 @@
 (in-package :robocar-apps)
+(defvar *user* "robocar")
+(defvar *password* "takomeshi")
 
 (defvar *number-of-robocars* 40)
 
@@ -53,7 +55,7 @@
 
 (define-easy-handler (group-new :uri "/groups/new") ()
   (multiple-value-bind (user pass) (authorization)
-    (if (and (string= user "robocar") (string= pass "ikasumi"))
+    (if (and (string= user *user*) (string= pass *password*))
         (standard-page
             (:title "group:creation")
           (:form :method "post" :action "/groups/create"

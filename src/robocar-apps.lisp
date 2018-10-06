@@ -5,8 +5,7 @@
 
 (in-package :robocar-apps)
 
-(defvar *version* "0.5.1")
-
+(defvar *version* "0.6")
 (defvar *http*)
 
 ;;http://lambdasakura.hatenablog.com/entry/20100122/1264134907
@@ -26,6 +25,8 @@
 (defvar *mongodb-host*
   (or (my-getenv "ROBOCAR_APP_DB") "localhost"))
 (defvar *db* "ucome")
+
+;;must change annually.
 (defvar *groups* "rb_2018")
 (defvar *answers* "as_2018")
 
