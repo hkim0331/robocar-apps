@@ -7,28 +7,20 @@
 * vm2016 のポート使用を抑制する
 * web アプリケーションごとに nginx を設定する煩わしさを軽減する
 
-## current
-
-* installed 0.6.1
-
-* hotfix 0.6.2
-
-## FIXME
-
-* 環境変数はコンパイル時のものを反映する。
-* グループ一覧が出ない
-
 ## start
 
 M-x slime
 CL-USER> (ql:quickload :robocar-apps)
 
-
 ## Usage
 
 ## Installation
 
-make install
+ROBOBAR\_APP\_DB が db.melt.kyutech.ac.jp を指していること。
+
+```sh
+$ make install
+```
 
 ## Author
 

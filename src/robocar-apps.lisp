@@ -5,7 +5,7 @@
 
 (in-package :robocar-apps)
 
-(defvar *version* "0.6.2")
+(defvar *version* "0.6.3")
 
 ;;http://lambdasakura.hatenablog.com/entry/20100122/1264134907
 (defun my-getenv (name &optional default)
@@ -22,7 +22,7 @@
      #+LISPWORKS (lispworks:environment-variable name)
      default))
 
-;;FIXME! can not read ROBOCAR_APP_DB
+;; コンパイル時の環境変数を反映する。
 (defvar *mongodb-host* (my-getenv "ROBOCAR_APP_DB" "localhost"))
 (defvar *db* "ucome")
 
@@ -108,12 +108,7 @@
     (:ul
      (:li (:a :href "/assignments/new" "グループ課題提出"))
      (:li (:a :href "/groups/index" "グループ一覧"))
-     (:li (:a :href "/seats/index" "着席状況")
-          (:span "後方座席を正しく表示しないバグは直ったか")))
-    (:p (format t "db: ~a ~a"
-                (my-getenv "ROBOCAR_APP_DB")
-                *mongodb-host*))
-    ))
+     (:li (:a :href "/seats/index" "着席状況")))))
 
 (defun main ()
   (start-server 20169)

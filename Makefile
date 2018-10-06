@@ -1,7 +1,9 @@
-all: install
+ROBOCAR_APP_DB=db.melt.kyutech.ac.jp
+
+all: robocar-apps
 
 install: robocar-apps
-	install -m 0755 robocar-apps /srv/robocar-apps
+	install -m 0755 robocar-apps /srv/robocar-apps/
 
 robocar-apps:
 	sbcl \
@@ -22,10 +24,6 @@ clean:
 	${RM} ./robocar-apps
 	find ./ -name \*.bak -exec rm {} \;
 
-# no use. 2018-10-06.
-#ssh:
-#	ssh -f -N -L 27017:localhost:27017 ubuntu@db.melt.kyutech.ac.jp
-
-# isc:
-# 	install -m 0700 src/seats-isc.sh ${HOME}/bin/seats-start
+test:
+	@echo ${ROBOCAR_APP_DB}
 
