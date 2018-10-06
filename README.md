@@ -7,7 +7,18 @@
 * vm2016 のポート使用を抑制する
 * web アプリケーションごとに nginx を設定する煩わしさを軽減する
 
+## FORGET
+
+* 認証をどうやってるんだっけ？
+
+## start
+
+M-x slime
+CL-USER> (ql:quickload :robocar-apps)
+
 ## port forward required
+
+これ、やめよう。2018-10-06
 
 ```sh
 $ ssh -f -N -L 27017:localhost:27017 user@mongodb.host
@@ -27,4 +38,5 @@ $ ssh -f -N -L 27017:localhost:27017 user@mongodb.host
 
 ## Copyright
 
-Copyright (c) 2016 Hiroshi Kimura
+Copyright (c) 2016-2018 Hiroshi Kimura
+

@@ -6,6 +6,7 @@ After=network.target portforward-mongodb.service
 Type=simple
 WorkingDirectory=/srv/robocar-apps
 ExecStart=/srv/robocar-app/robocar-apps
+Environment=ROBOCAR_APP_DB=db.melt.kyutech.ac.jp
 
 [Install]
 WantedBy=multi-user.target

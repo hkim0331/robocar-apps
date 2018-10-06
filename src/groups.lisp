@@ -1,4 +1,6 @@
 (in-package :robocar-apps)
+(defvar *user* "robocar")
+(defvar *password* "takomeshi")
 
 (defvar *number-of-robocars* 40)
 
@@ -12,7 +14,7 @@
 
 (define-easy-handler (groups-index :uri "/groups/index") ()
   (standard-page
-      (:title "robocar 2017 groups")
+      (:title "robocar groups")
     (:table
      :class "table table-hover"
      (:thead :class "thead-default"
@@ -53,7 +55,7 @@
 
 (define-easy-handler (group-new :uri "/groups/new") ()
   (multiple-value-bind (user pass) (authorization)
-    (if (and (string= user "robocar") (string= pass "ikasumi"))
+    (if (and (string= user *user*) (string= pass *password*))
         (standard-page
             (:title "group:creation")
           (:form :method "post" :action "/groups/create"
@@ -141,5 +143,4 @@
         (:p "または学生番号打ち間違ったか。")
         (:p "ブラウザのバックボタンで元のページに戻ってやり直してください。")
         (:p "下の top で戻ると入力を捨てるから注意。")
-        (:p (:a :href "/groups/index" "top")))
-        ))
+        (:p (:a :href "/groups/index" "top")))))

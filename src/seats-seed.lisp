@@ -1,6 +1,6 @@
 (in-package :robocar-apps)
 
-(defparameter +year+ #(2016 2017))
+(defparameter +year+ #(2016 2017 2018 2019 2020))
 (defparameter +term+ #("q3" "q4"))
 (defparameter +sid+  #("hkim" "miyuki" "akari" "isana" "aoi"))
 (defparameter +wday+ #("Mon" "Tue" "Wed" "Thu" "Fri"))
