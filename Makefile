@@ -24,7 +24,7 @@ clean:
 	find ./ -name \*.bak -exec rm {} \;
 
 ssh:
-	ssh -f -N -L 27017:localhost:27017 dbs.melt.kyutech.ac.jp
+	ssh -f -N -L 27017:localhost:27017 ubuntu@db.melt.kyutech.ac.jp
 
 # isc:
 # 	install -m 0700 src/seats-isc.sh ${HOME}/bin/seats-start
