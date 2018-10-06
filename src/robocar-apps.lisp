@@ -5,8 +5,8 @@
 
 (in-package :robocar-apps)
 
-(defvar *version* "0.6")
-(defvar *http*)
+(defvar *version* "0.6.1")
+(defparameter *http* nil)
 
 ;;http://lambdasakura.hatenablog.com/entry/20100122/1264134907
 (defun my-getenv (name &optional default)
@@ -90,7 +90,6 @@
            "/groups.css" "static/groups.css") *dispatch-table*))
 
 (defun start-server (&optional (port 8080))
-;;  (cl-mongo:db.use "ucome")
   (setf (html-mode) :html5)
   (static-contents)
   (setf *http* (make-instance 'easy-acceptor :port port))
@@ -104,11 +103,12 @@
   (standard-page
       (:title "Robocar Apps")
     (:ul
-     (:li (:a :href "/assignments/new" "グループ課題提出")
-          (:span "パスワードつけるか？"))
+     (:li (:a :href "/assignments/new" "グループ課題提出"))
      (:li (:a :href "/groups/index" "グループ一覧"))
      (:li (:a :href "/seats/index" "着席状況")
-          (:span "後方座席を正しく表示しないバグあり")))))
+          (:span "後方座席を正しく表示しないバグは直ったか")))
+    (:p (format t "db: ~a" *mongodb-host*))
+    ))
 
 (defun main ()
   (start-server 20169)
