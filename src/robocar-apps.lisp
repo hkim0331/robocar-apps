@@ -22,7 +22,9 @@
      #+LISPWORKS (lispworks:environment-variable name)
      default))
 
-(defvar *mongodb-host* (my-getenv "ROBOCAR_APP_DB" "localhost"))
+;;FIXME! can not read ROBOCAR_APP_DB
+;;(defvar *mongodb-host* (my-getenv "ROBOCAR_APP_DB" "localhost"))
+(defvar *mongodb-host* "db.melt.kyutech.ac.jp")
 
 (defvar *db* "ucome")
 
@@ -110,7 +112,9 @@
      (:li (:a :href "/groups/index" "グループ一覧"))
      (:li (:a :href "/seats/index" "着席状況")
           (:span "後方座席を正しく表示しないバグは直ったか")))
-    (:p (format t "db: ~a" *mongodb-host*))
+    (:p (format t "db: ~a ~a"
+                (my-getenv "ROBOCAR_APP_DB")
+                *mongodb-host*))
     ))
 
 (defun main ()

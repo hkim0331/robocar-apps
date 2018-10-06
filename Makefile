@@ -1,11 +1,13 @@
-all: robocar-apps
+all: install
+
+install: robocar-apps
+	install -m 0755 robocar-apps /srv/robocar-apps
 
 robocar-apps:
 	sbcl \
 		--eval "(ql:quickload :robocar-apps)" \
 		--eval "(in-package :robocar-apps)" \
-		--eval "(sb-ext:save-lisp-and-die \"robocar-apps\" :executable t :toplevel 'main)" &&
-	install -m 0755 robocar-apps /srv/robocar-apps/
+		--eval "(sb-ext:save-lisp-and-die \"robocar-apps\" :executable t :toplevel 'main)"
 
 start: robocar-apps
 	sudo systemtl start robocar-apps
