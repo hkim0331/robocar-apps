@@ -104,7 +104,8 @@
 
 (define-easy-handler (index :uri "/index") ()
   (standard-page
-      (:title "Robocar Apps")
+   (:title "Robocar Apps")
+   (:p (format t "~a ~a" *mongodb-host* (my-getenv "HOME")))
     (:ul
      (:li (:a :href "/assignments/new" "グループ課題提出"))
      (:li (:a :href "/groups/index" "グループ一覧"))
