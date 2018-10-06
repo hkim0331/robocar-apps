@@ -1,6 +1,6 @@
 (in-package :robocar-apps)
 
-(defvar *cookie* "robocar-2016")
+(defvar *cookie* "robocar-apps")
 (defvar *cols* 80)
 (defvar *rows* 20)
 
