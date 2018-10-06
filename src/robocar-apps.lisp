@@ -6,7 +6,28 @@
 (in-package :robocar-apps)
 
 (defvar *version* "0.5.1")
+
 (defvar *http*)
+
+;;http://lambdasakura.hatenablog.com/entry/20100122/1264134907
+(defun my-getenv (name &optional default)
+    #+CMU
+    (let ((x (assoc name ext:*environment-list*
+                    :test #'string=)))
+      (if x (cdr x) default))
+    #-CMU
+    (or
+     #+Allegro (sys:getenv name)
+     #+CLISP (ext:getenv name)
+     #+ECL (si:getenv name)
+     #+SBCL (sb-unix::posix-getenv name)
+     #+LISPWORKS (lispworks:environment-variable name)
+     default))
+(defvar *mongodb-host*
+  (or (my-getenv "ROBOCAR_APP_DB") "localhost"))
+(defvar *db* "ucome")
+(defvar *groups* "rb_2018")
+(defvar *answers* "as_2018")
 
 (defun now ()
   (multiple-value-bind (s m h dd mm yy)
@@ -16,14 +37,8 @@
 (defun today ()
   (subseq (now) 0 10))
 
-;; mongodb
-(defvar *mongodb-host* "localhost")
-(defvar *db* "ucome")
-(defvar *groups* "rb_2017")
-(defvar *answers* "as_2017")
-
 (defmacro with-db-ucome (&rest rest)
-  "mongodb://localhost:27017/ucome な感じ。こんなコメントはダメ。"
+  "mongodb://localhost:27017/ucome"
   `(with-mongo-connection
        (:host *mongodb-host* :port *mongo-default-port* :db *db*)
      ,@rest))
@@ -52,12 +67,13 @@
        (:link :rel "stylesheet" :href "/seats.css")
        (:link :rel "stylesheet" :href "/groups.css")
        (:link :rel "stylesheet"
-                            :href "//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
-       (:title "roobocar 2017 apps"))
+              :href "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              :integrity "sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+              :crossorigin "anonymous")
+       (:title "roobocar apps"))
       (:body
        (:div
         :class "container"
-        ;; (:h1 :class "page-header hidden-xs" "Robocar 2017 Apps")
         (:h3 ,title)
         (navi)
         ,@body

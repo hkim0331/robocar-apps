@@ -12,7 +12,7 @@
 
 (define-easy-handler (groups-index :uri "/groups/index") ()
   (standard-page
-      (:title "robocar 2017 groups")
+      (:title "robocar groups")
     (:table
      :class "table table-hover"
      (:thead :class "thead-default"
@@ -141,5 +141,4 @@
         (:p "または学生番号打ち間違ったか。")
         (:p "ブラウザのバックボタンで元のページに戻ってやり直してください。")
         (:p "下の top で戻ると入力を捨てるから注意。")
-        (:p (:a :href "/groups/index" "top")))
-        ))
+        (:p (:a :href "/groups/index" "top")))))
