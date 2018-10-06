@@ -24,7 +24,6 @@
 
 ;; コンパイル時の環境変数を反映する。
 (defvar *mongodb-host* (my-getenv "ROBOCAR_APP_DB" "localhost"))
-
 (defvar *db* "ucome")
 
 ;;must change annually.

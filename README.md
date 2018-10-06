@@ -16,6 +16,12 @@ CL-USER> (ql:quickload :robocar-apps)
 
 ## Installation
 
+ROBOBAR\_APP\_DB が db.melt.kyutech.ac.jp を指していること。
+
+```sh
+$ make install
+```
+
 ## Author
 
 * Hiroshi Kimura
