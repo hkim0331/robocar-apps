@@ -5,7 +5,7 @@
 
 (in-package :robocar-apps)
 
-(defvar *version* "0.6.3")
+(defvar *version* "0.6.4")
 
 ;;http://lambdasakura.hatenablog.com/entry/20100122/1264134907
 (defun my-getenv (name &optional default)
@@ -104,7 +104,8 @@
 
 (define-easy-handler (index :uri "/index") ()
   (standard-page
-      (:title "Robocar Apps")
+   (:title "Robocar Apps")
+   (:p (format t "~a ~a" *mongodb-host* (my-getenv "HOME")))
     (:ul
      (:li (:a :href "/assignments/new" "グループ課題提出"))
      (:li (:a :href "/groups/index" "グループ一覧"))
