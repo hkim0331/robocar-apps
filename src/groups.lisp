@@ -12,18 +12,18 @@
 
 (define-easy-handler (groups-index :uri "/groups/index") ()
   (standard-page
-      (:title "robocar 2017 groups")
-    (:table
-     :class "table table-hover"
-     (:thead :class "thead-default"
-             (:tr (:th "#")
-                  (:th "robocar")
-                  (:th "mem1")
-                  (:th "mem2")
-                  (:th "mem3")
-                  (:th "group name")))
-     (:tbody
-      (dolist (g (groups))
+   (:title "robocar groups")
+   (:table
+    :class "table table-hover"
+    (:thead :class "thead-default"
+            (:tr (:th "#")
+                 (:th "robocar")
+                 (:th "mem1")
+                 (:th "mem2")
+                 (:th "mem3")
+                 (:th "group name")))
+    (:tbody
+     (dolist (g (groups))
         (htm
          (:tr
           (:td
@@ -120,7 +120,6 @@
       0))
 
 (define-easy-handler (group-create :uri "/groups/create") (name m1 m2 m3)
-  (format t "~a ~a ~a ~a" name m1 m2 m3)
   (if (validate name m1 m2 m3)
       (with-db-ucome
           (let ((id (+ 1 (id-max))))

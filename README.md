@@ -7,19 +7,28 @@
 * vm2016 のポート使用を抑制する
 * web アプリケーションごとに nginx を設定する煩わしさを軽減する
 
-## port forward required
-
-```sh
-$ ssh -f -N -L 27017:localhost:27017 user@mongodb.host
-```
-
-## FIXME
-
-* インストールしたサーバ上では有効な css が localhost では無効。
-
 ## Usage
 
 ## Installation
+
+
+## FIXME
+
+* [2018-06-29] etc/port-forward-mongodb 中にExecStop エントリを作って
+  いない。
+
+* mongodb のデータベースコレクション設計変更
+  m1: m2: m3: やめて members: [] に。
+
+* groups グループ名に長さ制限
+
+## DONE
+
+* [2018-06-29] port forward コマンドの起動を systemctl で。
+
+    ```sh
+    $ ssh -f -N -L 27017:localhost:27017 user@mongodb.host
+    ```
 
 ## Author
 

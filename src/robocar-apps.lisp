@@ -19,11 +19,11 @@
 ;; mongodb
 (defvar *mongodb-host* "localhost")
 (defvar *db* "ucome")
-(defvar *groups* "rb_2017")
-(defvar *answers* "as_2017")
+(defvar *groups* "rb_2018")
+(defvar *answers* "as_2018")
 
 (defmacro with-db-ucome (&rest rest)
-  "mongodb://localhost:27017/ucome な感じ。こんなコメントはダメ。"
+  "mongodb://localhost:27018/ucome な感じ。こんなコメントはダメ。"
   `(with-mongo-connection
        (:host *mongodb-host* :port *mongo-default-port* :db *db*)
      ,@rest))
