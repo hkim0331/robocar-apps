@@ -9,7 +9,7 @@
 (in-package :robocar-apps-asd)
 
 (defsystem robocar-apps
-:version "0.5.1"
+:version "0.6.4"
   :author "Hiroshi Kimura"
   :license "GPL2"
   :depends-on (:hunchentoot
@@ -25,7 +25,7 @@
   :description "robocar app collection"
   :long-description
   #.(with-open-file (stream (merge-pathnames
-                             #p"README.markdown"
+                             #p"README.md"
                              (or *load-pathname* *compile-file-pathname*))
                             :if-does-not-exist nil
                             :direction :input)

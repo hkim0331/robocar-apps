@@ -1,4 +1,6 @@
 (in-package :robocar-apps)
+(defvar *user* "robocar")
+(defvar *password* "takomeshi")
 
 (defvar *number-of-robocars* 40)
 
@@ -24,20 +26,20 @@
                  (:th "group name")))
     (:tbody
      (dolist (g (groups))
-        (htm
-         (:tr
-          (:td
-           (:form :method "post" :action "/groups/delete"
-                  (:input :type "submit"
-                          :name "gid"
-                          :value (str (get-element "gid" g)))))
-          (:td (str (get-element "robocar" g)))
-          (:td (str (get-element "m1" g)))
-          (:td (str (get-element "m2" g)))
-          (:td (str (get-element "m3" g)))
-          (:td (str (get-element "name" g))))))))
-    (:br)
-    (:p (:a :class "btn btn-primary" :href "/groups/new" "new group"))))
+       (htm
+        (:tr
+         (:td
+          (:form :method "post" :action "/groups/delete"
+                 (:input :type "submit"
+                         :name "gid"
+                         :value (str (get-element "gid" g)))))
+         (:td (str (get-element "robocar" g)))
+         (:td (str (get-element "m1" g)))
+         (:td (str (get-element "m2" g)))
+         (:td (str (get-element "m3" g)))
+         (:td (str (get-element "name" g))))))))
+   (:br)
+   (:p (:a :class "btn btn-primary" :href "/groups/new" "new group"))))
 
 ;; FIXME: confirmation
 (define-easy-handler (group-disable :uri "/groups/delete") (gid)
@@ -53,7 +55,7 @@
 
 (define-easy-handler (group-new :uri "/groups/new") ()
   (multiple-value-bind (user pass) (authorization)
-    (if (and (string= user "robocar") (string= pass "ikasumi"))
+    (if (and (string= user *user*) (string= pass *password*))
         (standard-page
             (:title "group:creation")
           (:form :method "post" :action "/groups/create"
@@ -71,8 +73,9 @@
 
 (defun unique? (key value)
   (with-db-ucome
-      (not (docs (cl-mongo:db.find *groups* ($ ($ "status" 1) ($ key value)))))))
-
+      (not (docs (cl-mongo:db.find *groups*
+                                   ($ ($ "status" 1) ($ key value)))))))
+;; ダサすぎ。
 (defun unique-mem? (mem)
   (and (sid? mem)
        (unique? "m1" mem)
@@ -139,5 +142,4 @@
         (:p "または学生番号打ち間違ったか。")
         (:p "ブラウザのバックボタンで元のページに戻ってやり直してください。")
         (:p "下の top で戻ると入力を捨てるから注意。")
-        (:p (:a :href "/groups/index" "top")))
-        ))
+        (:p (:a :href "/groups/index" "top")))))

@@ -16,6 +16,10 @@
 
 * [2018-06-29] etc/port-forward-mongodb 中にExecStop エントリを作って
   いない。
+## start
+
+M-x slime
+CL-USER> (ql:quickload :robocar-apps)
 
 * mongodb のデータベースコレクション設計変更
   m1: m2: m3: やめて members: [] に。
@@ -30,10 +34,17 @@
     $ ssh -f -N -L 27017:localhost:27017 user@mongodb.host
     ```
 
+ROBOBAR\_APP\_DB が db.melt.kyutech.ac.jp を指していること。
+
+```sh
+$ make install
+```
+
 ## Author
 
 * Hiroshi Kimura
 
 ## Copyright
 
-Copyright (c) 2016 Hiroshi Kimura
+Copyright (c) 2016-2018 Hiroshi Kimura
+

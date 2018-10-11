@@ -5,8 +5,33 @@
 
 (in-package :robocar-apps)
 
-(defvar *version* "0.5.1")
-(defvar *http*)
+(defvar *version* "0.6.4")
+
+;;http://lambdasakura.hatenablog.com/entry/20100122/1264134907
+(defun my-getenv (name &optional default)
+    #+CMU
+    (let ((x (assoc name ext:*environment-list*
+                    :test #'string=)))
+      (if x (cdr x) default))
+    #-CMU
+    (or
+     #+Allegro (sys:getenv name)
+     #+CLISP (ext:getenv name)
+     #+ECL (si:getenv name)
+     #+SBCL (sb-unix::posix-getenv name)
+     #+LISPWORKS (lispworks:environment-variable name)
+     default))
+
+;; コンパイル時の環境変数を反映する。
+(defvar *mongodb-host* (my-getenv "ROBOCAR_APP_DB" "localhost"))
+
+;;must change annually.
+(defvar *groups* "rb_2018")
+(defvar *answers* "as_2018")
+
+(defvar *db* "ucome")
+;;server object, just exit to kill.
+(defparameter *http* nil)
 
 (defun now ()
   (multiple-value-bind (s m h dd mm yy)
@@ -15,12 +40,6 @@
 
 (defun today ()
   (subseq (now) 0 10))
-
-;; mongodb
-(defvar *mongodb-host* "localhost")
-(defvar *db* "ucome")
-(defvar *groups* "rb_2018")
-(defvar *answers* "as_2018")
 
 (defmacro with-db-ucome (&rest rest)
   "mongodb://localhost:27018/ucome な感じ。こんなコメントはダメ。"
@@ -52,12 +71,13 @@
        (:link :rel "stylesheet" :href "/seats.css")
        (:link :rel "stylesheet" :href "/groups.css")
        (:link :rel "stylesheet"
-                            :href "//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
-       (:title "roobocar 2017 apps"))
+              :href "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              :integrity "sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+              :crossorigin "anonymous")
+       (:title "roobocar apps"))
       (:body
        (:div
         :class "container"
-        ;; (:h1 :class "page-header hidden-xs" "Robocar 2017 Apps")
         (:h3 ,title)
         (navi)
         ,@body
@@ -73,7 +93,6 @@
            "/groups.css" "static/groups.css") *dispatch-table*))
 
 (defun start-server (&optional (port 8080))
-;;  (cl-mongo:db.use "ucome")
   (setf (html-mode) :html5)
   (static-contents)
   (setf *http* (make-instance 'easy-acceptor :port port))
@@ -85,13 +104,12 @@
 
 (define-easy-handler (index :uri "/index") ()
   (standard-page
-      (:title "Robocar Apps")
+   (:title "Robocar Apps")
+   (:p (format t "~a ~a" *mongodb-host* (my-getenv "HOME")))
     (:ul
-     (:li (:a :href "/assignments/new" "グループ課題提出")
-          (:span "パスワードつけるか？"))
+     (:li (:a :href "/assignments/new" "グループ課題提出"))
      (:li (:a :href "/groups/index" "グループ一覧"))
-     (:li (:a :href "/seats/index" "着席状況")
-          (:span "後方座席を正しく表示しないバグあり")))))
+     (:li (:a :href "/seats/index" "着席状況")))))
 
 (defun main ()
   (start-server 20169)

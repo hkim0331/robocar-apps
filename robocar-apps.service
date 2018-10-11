@@ -1,0 +1,12 @@
+[Unit]
+Description=App for robocar class
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/srv/robocar-apps
+ExecStart=/srv/robocar-apps/robocar-apps
+Environment=ROBOCAR_APP_DB=db.melt.kyutech.ac.jp
+
+[Install]
+WantedBy=multi-user.target

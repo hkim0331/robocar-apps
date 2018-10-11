@@ -1,0 +1,13 @@
+[Unit]
+Description=App for robocar class
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/srv/robocar-apps
+ExecStart=/srv/robocar-apps/robocar-apps
+Restart = always
+User=hkim
+
+[Install]
+WantedBy=multi-user.target
