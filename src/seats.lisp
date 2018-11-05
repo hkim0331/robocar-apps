@@ -84,6 +84,10 @@ c-2g:10.27.102.1-100
      (cadar ip-sid-list))
     (t (find-sid n (cdr ip-sid-list)))))
 
+;; unprint left most three characters(numbers).
+(defun up3 (s)
+  (regex-replace "^..." s "***"))
+
 (define-easy-handler (seats-show :uri "/seats/show") (year term wday hour room date)
   (let ((students (find-students (format nil "~a_~a" term year)
                      :uhour (format nil "~a~a" wday hour)
@@ -100,6 +104,6 @@ c-2g:10.27.102.1-100
           (htm (:tr
                 (dolist (n row)
                   (htm (:td :class "seat"
-                            (format t "~a" (find-sid n students))))))))))
+                            (format t "~a" (up3 (find-sid n students)))))))))))
       (:p (:a :href "/index" "back")))))
 
