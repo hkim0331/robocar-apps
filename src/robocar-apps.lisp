@@ -5,7 +5,7 @@
 
 (in-package :robocar-apps)
 
-(defvar *version* "0.6.6")
+(defvar *version* "0.6.7")
 
 ;;http://lambdasakura.hatenablog.com/entry/20100122/1264134907
 (defun my-getenv (name &optional default)
