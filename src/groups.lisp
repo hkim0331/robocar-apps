@@ -11,6 +11,9 @@
                                   :limit 0
                                   :field "gid"
                                   :asc t)))))
+;;unprint 3 chars from left
+(define up3 (s)
+  (concatenate "***" (subseq s 3)))
 
 (define-easy-handler (groups-index :uri "/groups/index") ()
   (standard-page
@@ -33,9 +36,9 @@
                  (:input :type "submit"
                          :name "gid"
                          :value (str (get-element "gid" g)))))
-         (:td (str (get-element "robocar" g)))
-         (:td (str (get-element "m1" g)))
-         (:td (str (get-element "m2" g)))
+         (:td (up3 (str (get-element "robocar" g))))
+         (:td (up3 (str (get-element "m1" g))))
+         (:td (up3 (str (get-element "m2" g))))
          (:td (str (get-element "m3" g)))
          (:td (str (get-element "name" g))))))))
    (:br)
