@@ -12,7 +12,7 @@ robocar-apps:
 		--eval "(sb-ext:save-lisp-and-die \"robocar-apps\" :executable t :toplevel 'main)"
 
 start: robocar-apps
-	sudo systemtl start robocar-apps
+	sudo systemctl start robocar-apps
 
 stop:
 	sudo systemctl stop robocar-apps
